@@ -24,11 +24,11 @@ class PublisherAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'category', 'publisher', 'isbn', 'publication_date', 'total_copies', 'available_copies')
+    list_display = ('title', 'author', 'category', 'publisher', 'isbn', 'publication_date', 'total_copies', 'available_copies','number_of_pages')
     list_filter = ('author', 'category', 'publisher', 'publication_date')
     search_fields = ('title', 'isbn', 'author__first_name', 'author__last_name')
     ordering = ['title']
-    fields = ('title', 'author', 'category', 'publisher', 'publication_date', 'isbn', 'description', 'total_copies', 'available_copies', 'cover_image')
+    fields = ('title', 'author', 'category', 'publisher', 'publication_date', 'isbn', 'description', 'total_copies', 'available_copies', 'number_of_pages','cover_image')
 
 
 @admin.register(BookCopy)

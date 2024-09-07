@@ -28,7 +28,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ['id', 'title', 'author', 'category', 'publisher', 'publication_date', 'isbn', 'description',
-                  'total_copies', 'available_copies', 'cover_image']
+                  'total_copies', 'available_copies', 'cover_image', 'number_of_pages']
 
 
 class BookCopySerializer(serializers.ModelSerializer):
