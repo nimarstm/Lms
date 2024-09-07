@@ -2,3 +2,4 @@
 **/__pycash__/
 media/
 *.pyc
+local_settings.py
