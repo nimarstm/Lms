@@ -1,13 +1,10 @@
-from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.views import APIView
-from rest_framework.response import Response
 
 from .models import Book, Author, Category, BookCopy, Publisher
 from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, PublisherSerializer, BookCopySerializer
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from authentication.permissions import IsAdminOrReadOnly ,IsAdminOrLibrarianOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from utils.permissions import IsAdminOrLibrarianOrReadOnly
 
 
 # Create your views here.

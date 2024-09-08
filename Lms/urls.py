@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('books.urls')),
     path('', include('authentication.urls')),
+    path('', include('borrowing.urls')),
 
 ]
 if IS_DEVEL:
