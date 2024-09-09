@@ -11,6 +11,11 @@ class BorrowingSerializer(serializers.ModelSerializer):
         read_only_fields = ['borrow_date', 'late_fee', 'status']
 
     def validate(self, data):
+        book = data.get('book')
+        if book.is_borrowed:
+            raise serializers.ValidationError("This book is already borrowed and cannot be borrowed again.")
+
         if data['due_date'] <= timezone.now():
             raise serializers.ValidationError("Due date must be in the future.")
+
         return data

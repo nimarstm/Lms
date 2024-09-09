@@ -12,7 +12,7 @@ class Borrowing(models.Model):
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='borrowings')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='borrowings')
+    book = models.ForeignKey(Book(is_borrowed=False), on_delete=models.CASCADE, related_name='borrowings')
     borrow_date = models.DateTimeField(auto_now_add=True)
     due_date = models.DateTimeField()
     return_date = models.DateTimeField(null=True, blank=True)

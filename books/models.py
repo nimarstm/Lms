@@ -17,6 +17,7 @@ class Book(models.Model):
     available_copies = models.IntegerField(default=0, verbose_name=_("Available Copies"))
     total_copies = models.IntegerField(default=1, verbose_name=_("Total Copies"))
     cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
+    is_borrowed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
