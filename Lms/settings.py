@@ -36,13 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_celery_beat',
     'rest_framework',
     'rest_framework_simplejwt',
+
     'books',
     'authentication',
     'borrowing',
-    'rating_and_review'
-
+    'rating_and_review',
+    'notifications',
 
 ]
 
@@ -143,3 +145,18 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.LibraryUser'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    'send_return_reminder_every_day': {
+        'task': 'notifications.tasks.send_return_reminder',
+        'schedule': timedelta(days=1),
+    },
+    'send_overdue_alert_every_day': {
+        'task': 'notifications.tasks.send_overdue_alert',
+        'schedule': timedelta(days=1),
+    },
+}
