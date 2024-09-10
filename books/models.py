@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.utils.translation import gettext_lazy as _
 
 
@@ -21,6 +22,12 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    def average_rating(self):
+        reviews = self.reviews.all()
+        if reviews.exists():
+            return reviews.aggregate(Avg('rating'))['rating__avg']
+        return None
 
     class Meta:
         db_table = "Books"

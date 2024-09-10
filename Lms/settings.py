@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'books',
     'authentication',
-    'borrowing'
+    'borrowing',
+    'rating_and_review'
 
 
 ]

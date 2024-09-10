@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('books.urls')),
     path('', include('authentication.urls')),
     path('', include('borrowing.urls')),
+    path('', include('rating_and_review.urls')),
 
 ]
 if IS_DEVEL:
