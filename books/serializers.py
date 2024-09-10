@@ -2,10 +2,18 @@ from rest_framework import serializers
 from .models import Author, Category, Publisher, BookCopy, Book
 
 
+class AuthorBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['id', 'title', 'publication_date', 'isbn']
+
+
 class AuthorSerializer(serializers.ModelSerializer):
+    books = AuthorBookSerializer(many=True, read_only=True)
+
     class Meta:
         model = Author
-        fields = ['id', 'first_name', 'last_name', 'biography', 'date_of_birth', 'date_of_death']
+        fields = ['id', 'first_name', 'last_name', 'biography', 'date_of_birth', 'date_of_death', 'books']
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -28,7 +36,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ['id', 'title', 'author', 'category', 'publisher', 'publication_date', 'isbn', 'description',
-                  'total_copies', 'available_copies', 'cover_image', 'number_of_pages']
+                  'total_copies', 'available_copies', 'cover_image', 'number_of_pages', "is_borrowed"]
 
 
 class BookCopySerializer(serializers.ModelSerializer):

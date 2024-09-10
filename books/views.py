@@ -2,7 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Book, Author, Category, BookCopy, Publisher
 from .serializers import BookSerializer, AuthorSerializer, CategorySerializer, PublisherSerializer, BookCopySerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from utils.permissions import IsAdminOrLibrarianOrReadOnly
 
@@ -13,7 +13,7 @@ class BookView(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['author__first_name', 'author__last_name', 'category__title', 'publisher__name']
+    filterset_fields = ['author__first_name', 'author__last_name', 'category__title', 'publisher__name', 'is_borrowed']
 
 
 class AuthorView(viewsets.ModelViewSet):
@@ -22,6 +22,7 @@ class AuthorView(viewsets.ModelViewSet):
     serializer_class = AuthorSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['first_name', 'last_name', 'date_of_birth']
+
 
 
 class CategoryView(viewsets.ModelViewSet):

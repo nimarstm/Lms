@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Borrowing
+from .models import Borrowing, Reservation
 from django import forms
 from .models import Borrowing, Book
 
@@ -26,3 +26,14 @@ class BorrowingAdmin(admin.ModelAdmin):
             obj.book.is_borrowed = True
         obj.book.save()
         super().save_model(request, obj, form, change)
+
+
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ['user', 'book', 'reserved_at', 'is_active']
+    list_filter = ['is_active', 'reserved_at']
+    search_fields = ['user__username', 'book__title']
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('user', 'book')

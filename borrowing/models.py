@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from books.models import Book
+from django.contrib.auth.models import User
+
 from datetime import timedelta
 
 
@@ -36,3 +38,13 @@ class Borrowing(models.Model):
 
     def __str__(self):
         return f"{self.user.username} borrowed {self.book.title} on {self.borrow_date}"
+
+
+class Reservation(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='reservations', on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='reservations', on_delete=models.CASCADE)
+    reserved_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'Reservation: {self.book.title} by {self.user.username}'

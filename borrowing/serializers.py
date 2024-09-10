@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Borrowing
+from .models import Borrowing, Reservation
 from django.utils import timezone
 from datetime import timedelta
 
@@ -19,3 +19,12 @@ class BorrowingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Due date must be in the future.")
 
         return data
+
+
+class ReservationSerializer(serializers.ModelSerializer):
+    book_title = serializers.ReadOnlyField(source='book.title')
+    book = serializers.HiddenField(default=None)
+
+    class Meta:
+        model = Reservation
+        fields = ['id', 'book_title', 'reserved_at', 'is_active','book']
