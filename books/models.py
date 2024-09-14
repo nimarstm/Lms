@@ -27,7 +27,7 @@ class Book(models.Model):
         reviews = self.reviews.all()
         if reviews.exists():
             return reviews.aggregate(Avg('rating'))['rating__avg']
-        return None
+        return "-"
 
     class Meta:
         db_table = "Books"

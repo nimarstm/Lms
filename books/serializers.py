@@ -32,7 +32,7 @@ class BookSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(read_only=True)
     category = CategorySerializer(read_only=True)
     publisher = PublisherSerializer(read_only=True)
-    average_rating = serializers.ReadOnlyField(source='average_rating')
+    average_rating = serializers.ReadOnlyField()
 
     class Meta:
         model = Book

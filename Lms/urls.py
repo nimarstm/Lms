@@ -27,6 +27,7 @@ urlpatterns = [
     path('', include('borrowing.urls')),
     path('', include('rating_and_review.urls')),
     path('', include('notifications.urls')),
+    path('reports/', include('reports.urls')),
 
 ]
 if IS_DEVEL:
