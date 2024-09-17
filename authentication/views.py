@@ -56,4 +56,4 @@ class ProtectedView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return Response({'message': 'این یک API محافظت شده است'}, status=200)
+        return Response({'message': 'this is a protected API'}, status=200)
