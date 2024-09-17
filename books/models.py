@@ -12,8 +12,8 @@ class Book(models.Model):
     publisher = models.ForeignKey('Publisher', on_delete=models.SET_NULL, null=True, related_name='books',
                                   verbose_name=_("Publisher"))
     isbn = models.CharField(max_length=13, unique=True, verbose_name="ISBN")
-    publication_date = models.DateField(verbose_name=_("Publication Date"))
-    number_of_pages = models.IntegerField(verbose_name=_("Number of pages"))
+    publication_date = models.DateField(verbose_name=_("Publication Date"), null=True, blank=True)
+    number_of_pages = models.IntegerField(verbose_name=_("Number of pages"), null=True, blank=True)
     description = models.TextField(null=True, blank=True, verbose_name=_("Description"))
     available_copies = models.IntegerField(default=0, verbose_name=_("Available Copies"))
     total_copies = models.IntegerField(default=1, verbose_name=_("Total Copies"))
@@ -88,4 +88,3 @@ class BookCopy(models.Model):
     class Meta:
         verbose_name = _("BookCopy")
         verbose_name_plural = _("BookCopies")
-

@@ -15,7 +15,7 @@ class BorrowingSerializer(serializers.ModelSerializer):
         if book.is_borrowed:
             raise serializers.ValidationError("This book is already borrowed and cannot be borrowed again.")
 
-        if data['due_date'] <= timezone.now():
+        if data['due_date'] < timezone.now():
             raise serializers.ValidationError("Due date must be in the future.")
 
         return data
