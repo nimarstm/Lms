@@ -24,7 +24,6 @@ class AuthorView(viewsets.ModelViewSet):
     filterset_fields = ['first_name', 'last_name', 'date_of_birth']
 
 
-
 class CategoryView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsAdminOrLibrarianOrReadOnly]
     queryset = Category.objects.all()

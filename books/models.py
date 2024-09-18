@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class Book(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("Book Title"))
-    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='books', verbose_name=_("Author"))
+    author = models.ForeignKey('Author', on_delete=models.CASCADE, related_name='books', null=True)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, related_name='books',
                                  verbose_name=_("Category"))
     publisher = models.ForeignKey('Publisher', on_delete=models.SET_NULL, null=True, related_name='books',

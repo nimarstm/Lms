@@ -143,6 +143,7 @@ class AuthenticationLogoutTests(APITestCase):
         self.refresh = RefreshToken.for_user(self.user)
 
     def test_logout_user(self):
+        self.client.force_authenticate(user=self.user)
         url = reverse('logout')
         data = {
             "refresh": str(self.refresh)
@@ -152,6 +153,8 @@ class AuthenticationLogoutTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_205_RESET_CONTENT)
 
     def test_logout_with_invalid_token(self):
+        self.client.force_authenticate(user=self.user)
+
         url = reverse('logout')
         data = {
             'refresh': 'invalidtoken'

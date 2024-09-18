@@ -140,7 +140,7 @@ class BookViewTests(APITestCase):
         url = reverse('books-list')
         data = {
             "title": "New Test Book",
-            "author": self.author.id,
+            "author": self.author.first_name,
             "category": self.category.id,
             "publisher": self.publisher.id,
             "isbn": "567894321588",
@@ -149,7 +149,6 @@ class BookViewTests(APITestCase):
             "total_copies": 5
         }
         response = self.client.post(url, data)
-        print(response)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Book.objects.count(), 2)
 
