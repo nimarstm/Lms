@@ -106,8 +106,6 @@ class NotificationListViewTest(APITestCase):
         self.assertIsNotNone(notification.seen_at)
 
 
-
-
 class SendReturnReminderTest(TestCase):
     def setUp(self):
         self.author = Author.objects.create(first_name="J.K", last_name="Rowling")
